@@ -70,6 +70,36 @@ class Writtenby{
 
   }
 
+  function readByIsbn(){
+    $sql = "SELECT * FROM `writtenby` WHERE isbn = '$this->isbn'";
+    $stmt = $this->conn->prepare($sql);
+    if($stmt->execute()){
+      return $stmt;
+
+    } else{
+      echo "what is the problem?\n";
+      $arr = $stmt->errorInfo();
+      echo print_r($arr);
+
+    }
+
+  }
+
+  function readByAid(){
+    $sql = "SELECT * FROM `writtenby` WHERE aid = '$this->aid'";
+    $stmt = $this->conn->prepare($sql);
+    if($stmt->execute()){
+
+      return $stmt;
+    } else{
+      echo "what is the problem?\n";
+      $arr = $stmt->errorInfo();
+      echo print_r($arr);
+
+    }
+
+  }
+
 
   function read_books(){
     $dropview = "DROP VIEW IF EXISTS `view_book`";

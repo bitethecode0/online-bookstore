@@ -22,19 +22,17 @@
               contentType: "application/json",
               url: 'api/user/read.php'
             }).done(function(response){
-              alert("working");
+              // alert("working");
               var data = JSON.parse(response);
+
               var tr ='';
               $.each(data, function(i,item){
-                //alert("isbn?" +item.isbn +", title ?"+item.title+", price?"+item.price);
-                tr += '<tr><td><a href=bookDetailsPage.php?isbn='+(item.isbn)+'>'+item.isbn+'</a></td>';
-                tr += '<td>'+item.title+'</td>';
-                tr += '<td>'+item.price+'</td>';
-                tr += '</tr>';
+                tr += '<tr><td>'+item.username+'</td></tr>';
               });
 
 
              $('#listallbooks').append(tr);
+
 
             }).fail(function(){
               alert("no user");

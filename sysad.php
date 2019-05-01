@@ -14,7 +14,7 @@
       <a href="encrdecr.php">Security</a><br/><br/><br/>
       <a href="mngAuthors.php">Manage Authors</a><br/><br/><br/>
       <a href="mngBooks.php"> Manage Books</a><br/><br/><br/>
-      <a href="#"> Manage Customers</a><br/><br/><br/>
+      <a href="mngCustomers.php"> Manage Customers</a><br/><br/><br/>
       <a href="listallbooks.php"> List All books</a><br/><br/><br/>
       <a href="listallauthors.php"> List All authors</a><br/><br/><br/>
       <a href="listallcustomers.php"> List All customers</a><br/><br/><br/>

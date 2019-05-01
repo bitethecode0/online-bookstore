@@ -40,7 +40,7 @@
               }
 
             }).done(function(response){
-              alert("working?");
+              //alert("working?");
               //alert(response);
               var tr = '';
               tr += '<tr><th></th>';
@@ -49,7 +49,7 @@
 
 
               $.each(response, function(index) {
-                alert(response[index].isbn);
+                //alert(response[index].isbn);
 
                 tr += "<tr><td><input type='checkbox' id='mycheckbox' value='"+(response[index].isbn)+"'></td>";
                 tr += '<td><a href=bookDetails.php?isbn='+(response[index].isbn)+'>'+response[index].title+'</a></td>';
@@ -103,7 +103,7 @@
           // });
           $('#getOrder').click(function(){
 
-            alert("click working?");
+            //alert("click working?");
             var orders = [];
             $("#mycheckbox:checked").each(function() {
               //var row = $(this).closest("tr")[0].cells[2].find("input").val();
@@ -111,10 +111,11 @@
               orders.push({
                 id : $(this).val(),
                 quantity :row,
-                userid : <?php echo $cid ?>
+                userid : <?php echo (string)$cid; ?>
 
               })
             });
+            console.log("orders? :" +JSON.stringify(orders));
 
             $.ajax({
               type: 'POST',
@@ -124,7 +125,7 @@
                 orders
               )
             }).done(function(response){
-              alert("working?");
+              //alert("working?");
               alert(response);
             }).fail(function(){
               alert("fail to order");

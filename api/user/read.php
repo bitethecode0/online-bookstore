@@ -21,8 +21,8 @@
     $arr = array();
     while($row = $query->fetch(PDO::FETCH_ASSOC)){
       extract($row);
-      $each = array("userid" => $user->userid,
-      "username" => $user->username);
+      $each = array("userid" => $userid,
+      "username" => $username);
       array_push($arr, $each);
     }
     http_response_code(200);

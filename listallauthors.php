@@ -20,7 +20,7 @@
               contentType: "application/json",
               url: 'api/author/read.php'
             }).done(function(response){
-              alert("working");
+              // alert("working");
               var data = JSON.parse(response);
               var tr ='';
               $.each(data, function(i,item){

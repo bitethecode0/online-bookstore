@@ -8,7 +8,35 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
   <script>
     $(document).ready(function(){
-      $('#authorForm').on('submit', function(){
+
+      $('#list_authors').click(function(){
+        $.ajax({
+          type: 'POST',
+          contentType: "application/json",
+          url: 'api/author/read.php',
+
+        }).done(function(response){
+          // alert("working");
+          data = $.parseJSON(response);
+          var tblRow ='';
+
+          $.each(data, function(i, item) {
+            tblRow += "<tr><td><input type='checkbox' id='mycheckox' value='"+item.authorid+"'></td>";
+            tblRow += "<td>" + item.authorname + "</td></tr>";
+          });
+          alert(tblRow);
+          $('#authorList').empty();
+          $('#authorList').html(tblRow);
+
+        }).fail(function(){
+          alert("failed to read author list");
+        });
+
+        return false;
+      });
+
+
+      $('#insert_author').click(function(){
         // add author
         $.ajax({
              type: 'POST',
@@ -41,7 +69,7 @@
 
       });
 
-      $('#authorDeleteForm').on('submit', function(){
+      $('#delete_author').click(function(){
         // delete author
         var id = [];
         $("#mycheckox:checked").each(function() {
@@ -78,22 +106,24 @@
         }}
         return false;
       });
+
+
     });
 
   </script>
   <div>
     <h1><strong>Manage Authors</strong></h1>
-    <form id ="authorForm">
-      <label>name</lable> <input type="text" id="authorname">
-      <input type="submit" name = "submit" value="INSERT">
-      <br/><br/>
-    </form>
 
-    <form id ="authorDeleteForm">
+
+      <label>name</lable> <input type="text" id="authorname">
+      <input type="submit" id = "insert_author" value="INSERT">
+      <br/><br/>
+      <input type="submit" id = "list_authors" value="LIST">
       <table id ="authorList"border='1' width='250px'>
       </table>
-      <input type="submit" name = "submit" value="DELETE">
-    </form>
+      <input type="submit" id = "delete_author" value="DELETE">
+
+
 
     <div id="msg"></div>
   <div>

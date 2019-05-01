@@ -1,20 +1,26 @@
 <?php
   include('api/config/config.php');
   include('api/config/session.php');
-  $username = htmlspecialchars($_SESSION['login_user']);
-  $sql ="SELECT userid FROM user WHERE username ='$username'";
-  if(mysqli_query($db, $sql)){
-    $result = mysqli_query($db, $sql);
-    $row = mysqli_fetch_row($result);
-    if(!$row){
-      "error";
-    } else{
-      $cid = $row[0];
-    }
 
+  if(isset($_GET['userid'])){
+    $cid = $_GET['userid'];
   } else{
-    echo "error, ".$db->error;
+    $username = htmlspecialchars($_SESSION['login_user']);
+    $sql ="SELECT userid FROM user WHERE username ='$username'";
+    if(mysqli_query($db, $sql)){
+      $result = mysqli_query($db, $sql);
+      $row = mysqli_fetch_row($result);
+      if(!$row){
+        "error";
+      } else{
+        $cid = $row[0];
+      }
+
+    } else{
+      echo "error, ".$db->error;
+    }
   }
+
 ?>
 
 <html>

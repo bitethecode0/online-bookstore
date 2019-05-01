@@ -19,11 +19,11 @@ foreach($data as $each){
   */
   $order->ISBN = $each->id;
   $order->quantity = (int)$each->quantity;
-  $order->cid = $each->userid;
+  $order->cid = (int)$each->userid;
 
   if($order->purchase()){
     echo json_encode(array("code"=> "200",
-    "message" => "Order placed"));
+    "message" => "Order placed", "data"=> $data));
   } else{
     http_response_code(503);
     echo json_encode(array("code"=> "503",

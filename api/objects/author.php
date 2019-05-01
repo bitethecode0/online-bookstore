@@ -58,6 +58,7 @@ class Author{
   }
 
   function delete(){
+
     $query = "DELETE FROM Author WHERE authorid = '$this->authorid'";
     $stmt = $this->conn->prepare($query);
     if($stmt->execute()){

@@ -5,7 +5,7 @@
 </head>
   <body>
     <div>
-      <h1><strong>List All Books</strong></h1>
+      <h1><strong>List All Customers</strong></h1>
 
       <table id = "customer_list" border='1' width='250px'>
         <tr><th>customer id</th>
@@ -22,25 +22,24 @@
             $.ajax({
               type: 'POST',
               contentType: "application/json",
-              url: 'api/order/read.php'
+              url: 'api/order/read_customers.php'
             }).done(function(response){
 
               data = $.parseJSON(response);
+              alert(data);
 
               var tblRow ='';
               $.each(data, function(i, item) {
                 tblRow += "<tr>"+item.userid+"</td>";
                 tblRow += "<td>"+item.username + "</td>";
-                tblRow += '<td><a href=bookDetailsPage.php?userid='+(item.userid)+'>'+item.total_price+'</a></td></tr>';
+                tblRow += '<td><a href=myaccount.php?userid='+(item.userid)+'>'+item.total_price+'</a></td></tr>';
               });
 
-             $('#customer_list').html(tr);
+             $('#customer_list').html(tblRow);
 
             }).fail(function(){
               alert("fail to read all books..");
             });
-
-
 
             return false;
         });
